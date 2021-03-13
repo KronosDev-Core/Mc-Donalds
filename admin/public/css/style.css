@@ -1,0 +1,497 @@
+/* Default CSS */
+
+:root {
+    --color-bg: rgba(28, 28, 33);
+    --color-sec-bg: rgb(59, 59, 59);
+    --color-icon: rgb(0, 130, 78);
+    --color-text: rgb(227, 227, 227);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+body {
+    color: var(--color-text);
+    background: var(--color-bg);
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(173, 173, 173, 0.5);
+    border-radius: 10px;
+    background-color: transparent;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    background-color: transparent;
+    height: 5px;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgb(173, 173, 173);
+    background-color: #555;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+button {
+    border-radius: 50px!important;
+}
+
+nav {
+    position: fixed;
+    background-color: var(--color-sec-bg);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    opacity: 0.45;
+    z-index: 1;
+    overflow: hidden;
+}
+
+nav span {
+    visibility: hidden;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 0%;
+    color: var(--color-text);
+}
+
+nav img {
+    width: 100%;
+    height: 100%;
+}
+
+nav button {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    outline: 0;
+    opacity: 0.5;
+    z-index: 10;
+}
+
+nav div {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    outline: 0;
+    opacity: 0.5;
+    z-index: 10;
+    text-align: center;
+}
+
+nav:hover {
+    opacity: 0.85;
+}
+
+nav:hover span {
+    visibility: visible;
+    height: 100%;
+}
+
+nav:hover img {
+    height: 70%;
+}
+
+nav button:hover,
+nav div:hover {
+    opacity: 1;
+}
+
+
+/* Specific CSS */
+
+nav#Navbar {
+    height: 7%;
+    width: 80%;
+    left: 10%;
+    right: 10%;
+    top: 0;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    padding-bottom: 12.5px;
+    padding-top: 4px;
+}
+
+nav#NavBarFooter {
+    height: 7%;
+    width: 10%;
+    right: 1%;
+    bottom: 0;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    padding: 12.5px;
+    padding-bottom: 4px;
+}
+
+div#dbody {
+    width: 80%!important;
+    height: 70%!important;
+    position: fixed;
+    bottom: 15%;
+    top: 15%;
+    left: 10%;
+    right: 10%;
+    background-color: var(--color-sec-bg);
+    border-radius: 25px;
+    padding-bottom: 4px;
+    padding-top: 4px;
+    opacity: 0.45;
+    z-index: 1;
+    overflow: hidden;
+}
+
+div#dbody div {
+    height: 50%;
+    width: 100%;
+}
+
+button#Bsearch {
+    position: fixed;
+    right: 40%;
+    top: 17.3%;
+    width: 10%;
+    height: 3%;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    outline: 0;
+    opacity: 0.5;
+    z-index: 10;
+    padding: 1px 2px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+button#Bsearch img {
+    width: 100%;
+    height: 100%;
+}
+
+button#Bsearch span {
+    visibility: hidden;
+    width: 0;
+    text-align: left;
+    margin: auto;
+    color: var(--color-text);
+}
+
+button#Bsearch:hover {
+    opacity: .85;
+}
+
+button#Bsearch:hover img {
+    width: 50%;
+    opacity: 1;
+}
+
+button#Bsearch:hover span {
+    width: 50%;
+    opacity: 1;
+    visibility: visible;
+}
+
+div#search input {
+    position: fixed;
+    left: 35%;
+    top: 17.3%;
+    width: 15%;
+    height: 3%;
+    border-radius: 10px;
+    border: 0;
+    outline: None;
+    padding: 1px 2px;
+    cursor: text;
+    background-color: var(--color-text);
+    opacity: .5;
+}
+
+div#search input:hover {
+    opacity: .85;
+}
+
+div#search {
+    width: 60%!important;
+    height: 20%!important;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin: auto;
+}
+
+div#Rsearch {
+    position: fixed;
+    width: 60%!important;
+    height: 25%!important;
+    left: 20%;
+    right: 20%;
+    display: -webkit-flex;
+    display: inline-flex;
+    flex-flow: row wrap;
+    overflow-y: auto;
+    list-style: none;
+    align-items: center;
+}
+
+div#Rsearch button {
+    padding: 5px;
+    border-radius: 5px;
+    outline: none;
+    border: 0;
+    display: inline-block;
+    background-color: transparent;
+    cursor: pointer;
+    opacity: 0.5;
+    z-index: 10;
+    color: var(--color-text);
+    flex: 0 1 354px;
+    height: 50%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+}
+
+div#Rsearch img {
+    width: 100%;
+    height: 100%;
+}
+
+div#Rsearch span {
+    visibility: hidden;
+    width: 0;
+    text-align: left;
+    margin: auto;
+    color: var(--color-text);
+}
+
+div#Rsearch button:hover img {
+    width: 50%;
+    opacity: 1;
+}
+
+div#Rsearch button:hover span {
+    width: 50%;
+    opacity: 1;
+    visibility: visible;
+}
+
+div#Rsearch button:hover {
+    opacity: 1;
+}
+
+div#Dedit {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+div#Doption {
+    position: fixed;
+    top: 50%;
+    left: 20%;
+    width: 60%!important;
+    height: 30%!important;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+div#Dsend {
+    position: fixed;
+    bottom: 15%;
+    left: 20%;
+    width: 60%!important;
+    height: 5%!important;
+    display: -webkit-flex;
+    display: inline-flex;
+    flex-flow: row wrap;
+    overflow-y: auto;
+    list-style: none;
+    align-items: center;
+}
+
+div#Dsend button {
+    padding: 5px;
+    border-radius: 5px;
+    outline: none;
+    border: 0;
+    display: inline-block!important;
+    background-color: transparent;
+    cursor: pointer;
+    opacity: 0.5;
+    z-index: 10;
+    color: var(--color-text);
+    flex: 0 1 354px;
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    margin: auto;
+    text-align: center;
+}
+
+div#Dsend button:hover {
+    opacity: 1;
+}
+
+div#Doption {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+div#Doption div div {
+    text-align: center;
+    margin: auto;
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+}
+
+div#type button {
+    padding: 5px;
+    border-radius: 5px;
+    outline: none;
+    border: 0;
+    display: inline-block;
+    background-color: transparent;
+    cursor: pointer;
+    opacity: 0.5;
+    z-index: 10;
+    color: var(--color-text);
+    flex: 0 1 354px;
+    height: 50%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+}
+
+div#type button.double div img {
+    width: 50%;
+    height: 100%!important;
+}
+
+div#type button.double div {
+    width: 100%;
+    height: 100%!important;
+}
+
+div#type img {
+    width: 100%;
+    height: 100%;
+}
+
+div#type span {
+    visibility: hidden;
+    width: 0;
+    text-align: left;
+    margin: auto;
+    color: var(--color-text);
+}
+
+div#type button:hover img {
+    width: 50%;
+    opacity: 1;
+}
+
+div#type button.double:hover div {
+    width: 100%;
+    opacity: 1;
+}
+
+div#type button:hover span {
+    width: 50%;
+    opacity: 1;
+    visibility: visible;
+}
+
+div#type button.double:hover span {
+    width: 50%;
+    opacity: 1;
+    visibility: visible;
+}
+
+div#type button:hover {
+    opacity: 1;
+}
+
+div#noimage,
+div#input {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align: center;
+}
+
+div#input input {
+    width: 15%;
+    height: 40%;
+    border-radius: 10px;
+    border: 0;
+    outline: None;
+    padding: 1px 2px;
+    margin: auto;
+    cursor: text;
+    background-color: var(--color-text);
+    opacity: .5;
+}
+
+div#input input[type="checkbox"] {
+    cursor: pointer;
+}
+
+div#input input:hover {
+    opacity: .85;
+}
+
+div#select {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    text-align: center;
+    align-items: center;
+}
+
+div#select select {
+    width: 15%;
+    height: 40%;
+    margin: auto;
+    background-color: var(--color-text);
+    opacity: .5;
+    cursor: pointer;
+    border-radius: 10px;
+    border: 0;
+    outline: None;
+    padding: 1px 2px;
+}
+
+.ClickT,
+.ClickN,
+.ClickS {
+    background-color: var(--color-bg)!important;
+}

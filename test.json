@@ -1,0 +1,16 @@
+[{
+  "_id": {
+    "$oid": "5f91b350cbd48f9fd750220e"
+  },
+  "type": "Nugget",
+  "Name": "Chicken McNuggets",
+  "Size": {
+    "$oid": "5f91b817cbd48f9fd750221e"
+  }
+},{
+  "_id": {
+    "$oid": "5f91b6f1248ab9377c52da18"
+  },
+  "type": "Boissons",
+  "Name": "Coca-Cola"
+}]

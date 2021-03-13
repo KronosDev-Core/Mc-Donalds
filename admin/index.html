@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://ajax.googleapis.com/ https://unpkg.com/;" />
+    <title>Main</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+    <nav id="Navbar">
+        <button><img src="/assets/svg/1857913-fast-food/svg/012-fast food.svg"><span>Menu</span></button>
+        <button><img src="/assets/svg/1857913-fast-food/svg/044-cheese burger.svg"><span>Product</span></button>
+        <button><img src="/assets/svg/1857913-fast-food/svg/004-bacon.svg"><span>Supplement</span></button>
+        <button><img src="/assets/svg/calendar.svg"><span>Calendar</span></button>
+        <button id="Restart"><img src="/assets/svg/391100-electronic-and-web-element-collection/svg/184-reload.svg"><span>Restart</span></button>
+        <button id="Quit"><img src="/assets/svg/391100-electronic-and-web-element-collection/svg/185-cross.svg"><span>Quit</span></button>
+    </nav>
+
+    <nav id="NavBarFooter">
+        <div id="db"><img src="/assets/svg/391100-electronic-and-web-element-collection/svg/099-database-1.svg"><span>Connection ...</span></div>
+    </nav>
+
+    <div id="dbody">
+        <div id="Dsearch">
+            <div id="search">
+                <input id="Isearch" type="text">
+                <button id="Bsearch"><img src="/assets/svg/391100-electronic-and-web-element-collection/svg/097-search.svg"><span>Search</span></button>
+            </div>
+            <div id="Rsearch">
+                <button><img src="/assets/svg/1857913-fast-food/svg/029-nuggets.svg"><span>nuggets</span></button>
+                <button><img src="/assets/svg/1857913-fast-food/svg/041-salad.svg"><span>Salade</span></button>
+                <button><img src="/assets/svg/1857913-fast-food/svg/038-coffee cup.svg"><span>Coffe</span></button>
+                <button><img src="/assets/svg/1857913-fast-food/svg/044-cheese burger.svg"><span>Chesse Burger</span></button>
+                <button><img src="/assets/svg/1857913-fast-food/svg/031-kebab.svg"><span>Wrap</span></button>
+                <button><img src="/assets/svg/1857913-fast-food/svg/010-french fries.svg"><span>Fries</span></button>
+            </div>
+        </div>
+
+        <div id="Dedit">
+            <div id="Doption">
+                <div id="noimage">
+                    <div id="select">
+                        <select name="menu" id="menu">
+                            <option selected disabled>Choose an option</option>
+                            <option value="best of">Best Of</option>
+                            <option value="mc first">Mc First</option>
+                        </select>
+
+                        <select name="supplement" id="supplement">
+                            <option selected disabled>Choose an option</option>
+                            <option value="bacon">bacon</option>
+                        </select>
+
+                        <select name="size" id="size">
+                            <option selected disabled>Choose an option</option>
+                            <option value="small">Small</option>
+                            <option value="meduim">Medium</option>
+                            <option value="large">Large</option>
+                        </select>
+                    </div>
+
+                    <div id="input">
+                        <input type="text" id="name" placeholder="Name">
+                        <input type="number" id="price" min="0" max="100" step="0.01" placeholder="Price">
+                        <input type="checkbox" id="child" name="child">
+                    </div>
+                </div>
+
+                <div id="image">
+
+
+                    <div id="type" style="height: 100%;">
+                        <button id="Nuggets"><img src="/assets/svg/1857913-fast-food/svg/029-nuggets.svg"><span>Nuggets</span></button>
+                        <button id="Salade"><img src="/assets/svg/1857913-fast-food/svg/041-salad.svg"><span>Salade</span></button>
+                        <button id="Drink" class="double"><div><img src="/assets/svg/1857913-fast-food/svg/038-coffee cup.svg"><img src="/assets/svg/1857913-fast-food/svg/034-Soft drink.svg"></div><span>Drink</span></button>
+                        <button id="Burger"><img src="/assets/svg/1857913-fast-food/svg/006-burger.svg"><span>Burger</span></button>
+                        <button id="Wrap"><img src="/assets/svg/1857913-fast-food/svg/031-kebab.svg"><span>Wrap</span></button>
+                        <button id="Fries"><img src="/assets/svg/1857913-fast-food/svg/010-french fries.svg"><span>Fries</span></button>
+
+                    </div>
+                </div>
+            </div>
+            <div id="Dsend">
+                <button id="Bedit">Edit</button>
+                <button id="Bnew">New</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+    <script src="/assets/framework/Kronos.min.js"></script>
+    <script src="/assets/js/index.js"></script>
+</body>
+
+</html>

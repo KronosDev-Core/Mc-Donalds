@@ -1,0 +1,161 @@
+{
+    "Product": {
+        "Nugget": {
+            "Name": ["Chicken McNuggets"],
+            "Sauces": ["Barbecue", "Chinoise", "Moutarde", "Curry", "Deluxe", "Aucune"],
+            "Size": [4, 6, 9, 20],
+            "Price": [3, 4.7, 5.8, 10.95]
+        },
+        "Boissons": {
+            "Name": ["Coca-Cola", "Coca-Cola sans sucre", "Lipton Ice Tea", "Lipton Green Ice Tea", "Sprite", "Fanta"],
+            "Size": ["Petit", "Moyen", "Grand"],
+            "Price": [2.00, 2.60, 3.00],
+            "Other": {
+                "Name": ["Evian", "Badoit", "Minute Maid", "Nectar de Fruits Bio"],
+                "Type": {
+                    "TypeBoissons": ["Eau", "Eau", "Jus", "Bio"],
+                    "Eau": {
+                        "Size": [33, 50],
+                        "Price": [2.6, 3]
+                    },
+                    "Jus": {
+                        "Size": [20, 30, 47],
+                        "Price": [2, 2.6, 3]
+                    },
+                    "Bio": {
+                        "Size": [20],
+                        "Price": [2.1]
+                    }
+                }
+            }
+        },
+        "Frites": {
+            "Name": ["Frites", "Potatos"],
+            "Size": ["Petite", "Moyenne", "Grande"],
+            "Price": [2, 2.6, 3],
+            "Sauces": ["Barbecue", "Chinoise", "Moutarde", "Curry", "Deluxe", "Aucune"]
+        },
+        "Burger": {
+            "Standard": {
+                "SingleSize": {
+                    "Name": ["Fondu", "280", "McFirst", "Big Tasty", "Big Mac", "CBO", "Chess", "Hamb",
+                        "Filet", "EggMuffin", "Croque", "McChicken", "McFish"
+                    ],
+                    "Price": [2, 6.2, 3.95, 6.2, 4.7, 6.2, 2.3, 1.9,
+                        4.3, 2.6, 2.5, 4.7, 4.1
+                    ]
+                },
+                "MultiSize": {
+                    "Name": ["Chess"],
+                    "Size": ["Triple", "Double"],
+                    "Price": [4.6, 3.6]
+                },
+                "Supplement": {
+                    "Name": ["Bacon"],
+                    "Product": ["280", "Big Tasty", "Triple Chess", "Double Chess", "EggMuffin"],
+                    "Price": [0.3]
+                }
+            },
+            "New": {
+                "Name": ["Cheddar & Smoky Bacon"],
+                "Size": ["Double", "Single"],
+                "Price": [9.8, 7.9]
+            }
+        },
+        "Wrap": {
+            "Name": ["Wrap", "MacWrap"],
+            "Price": [2, 5.5]
+        },
+        "Salade": {
+            "Name": ["Classic Caesar", "Italian Mozza & Pasta", "tasty Blue Cheese & Bacon"],
+            "Price": [7.8, 7.8, 9.5],
+            "Sauce": ["Spécific", "Aucune"],
+            "Supplement": ["Petit Pain Bio", "Sans Pain"]
+        },
+        "Supplement": {
+            "Nugget": {
+                "Name": ["Chicken McNuggets"],
+                "Sauces": ["Barbecue", "Chinoise", "Moutarde", "Curry", "Deluxe", "Aucune"],
+                "Size": [4, 6, 9, 20],
+                "Price": [3, 4.7, 5.8, 10.95]
+            },
+            "Boissons": {
+                "Name": ["Coca-Cola", "Coca-Cola sans sucre", "Lipton Ice Tea", "Lipton Green Ice Tea", "Sprite", "Fanta"],
+                "Size": ["Petit", "Moyen", "Grand"],
+                "Price": [2.00, 2.60, 3.00],
+                "Other": {
+                    "Name": ["Evian", "Badoit", "Minute Maid", "Nectar de Fruits Bio"],
+                    "Type": {
+                        "TypeBoissons": ["Eau", "Eau", "Jus", "Bio"],
+                        "Eau": {
+                            "Size": [33, 50],
+                            "Price": [2.6, 3]
+                        },
+                        "Jus": {
+                            "Size": [20, 30, 47],
+                            "Price": [2, 2.6, 3]
+                        },
+                        "Bio": {
+                            "Size": [20],
+                            "Price": [2.1]
+                        }
+                    }
+                }
+            },
+            "Frites": {
+                "Name": ["Frites", "Potatos"],
+                "Size": ["Petite", "Moyenne", "Grande"],
+                "Price": [2, 2.6, 3],
+                "Sauces": ["Barbecue", "Chinoise", "Moutarde", "Curry", "Deluxe", "Aucune"]
+            },
+            "Burger": {
+                "Name": ["Fondu", "Chess", "Hamb",
+                    "Filet", "EggMuffin", "Croque", "McChicken", "McFish"
+                ],
+                "Price": [2, 2.3, 1.9,
+                    4.3, 2.6, 2.5, 4.7, 4.1
+                ],
+                "Supplement": {
+                    "Name": ["Bacon"],
+                    "Product": ["EggMuffin"],
+                    "Price": [0.3]
+                }
+            },
+            "Wrap": {
+                "Name": ["Wrap"],
+                "Price": [2]
+            },
+            "Salade": {
+                "Name": ["Classic Caesar", "Italian Mozza & Pasta", "tasty Blue Cheese & Bacon"],
+                "Price": [7.8, 7.8, 9.5],
+                "Sauce": ["Spécific", "Aucune"],
+                "Supplement": ["Petit Pain Bio", "Sans Pain"]
+            }
+        }
+    },
+    "Menu": {
+        "SingleSize": {
+            "Name": ["Salades", "Signature", "Happy Meal", "Best Of", "McFirst"],
+            "Price": [12.55, 13.9, 3.48, 9, 4.95],
+            "Size": []
+        },
+        "MultiSize": {
+            "Name": ["Best Of", "McFirst"],
+            "Price": [9.7, 5.95],
+            "Size": ["Maxi"]
+        }
+    },
+    "Time": {
+        "Month": 12,
+        "BMonthDay": [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
+        "MonthDay": [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
+        "BDays": 366,
+        "Days": 365,
+        "Hour": [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22],
+        "HourType":  [80, 150, 190, 130, 60, 30, 40, 110, 170, 190, 150, 70],
+        "IndicDays": [1.036, 1.022, 1.015, 1.027, 1.025, 1.052, 1.076],
+        "dayT": ["Dimanche", "Lundi", "Mardi", "Mercredi", "jeudi", "Vendredi", "Samedi"],
+        "Mois": ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aôut", "Septembre", "Octobre", "Novembre", "Décembre"],
+        "IndicMonth": [1, 1.02, 1, 1.02, 1, 1, 1.03, 1.04, 1, 1.02, 1, 1.02]
+    }
+}

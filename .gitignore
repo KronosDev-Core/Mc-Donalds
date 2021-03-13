@@ -74,3 +74,12 @@ typings/
 
 # FuseBox cache
 .fusebox/
+
+# Certificate File
+*.pem
+
+# Zip File/Folder
+*.zip
+
+# SVG Folder
+svg/
