@@ -83,3 +83,5 @@ typings/
 
 # SVG Folder
 svg/
+
+*.pyc

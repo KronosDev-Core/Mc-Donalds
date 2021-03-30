@@ -1,3 +1,4 @@
+from random import choice, choices
 import json
 import random
 import uuid
@@ -8,7 +9,6 @@ import pymongo
 from colorama import init, Fore
 
 init()
-from random import choice, choices
 
 bdd = pymongo.MongoClient("mongodb://localhost:27017/")
 db = bdd['McDonalds']
@@ -17,7 +17,8 @@ GroupsTest = []
 MoyenneAge = []
 MoyenneSexe: list[int] = [0, 0]
 MoyenneGroupSize = []
-GroupType: list[int] = [0, 0, 0, 0]  # ["Work", "Family", "Friend", "Love Friend"]
+# ["Work", "Family", "Friend", "Love Friend"]
+GroupType: list[int] = [0, 0, 0, 0]
 GroupTypeExemple: list[str] = ["Work", "Family", "Friend", "Love Friend"]
 
 DataFileJson = open("data.json", 'r', encoding="utf8")
@@ -25,14 +26,14 @@ DataJson = json.load(DataFileJson)
 DataFileJson.close()
 
 
-def RandomName(Gender: str) -> str:
+def RandomName(Gender: str):
     if Gender == '\x1b[35mfemale\x1b[39m':
         return names.get_full_name(gender='female')
     else:
         return names.get_full_name(gender='male')
 
 
-def ChoiceFavoriteProduct() -> list:
+def ChoiceFavoriteProduct():
     frites = DataJson['Product']['Frites']
     boissons = DataJson['Product']['Boissons']
     mainResult = ""
@@ -52,8 +53,10 @@ def ChoiceFavoriteProduct() -> list:
     OtherAks = choice(["Other", "NoOther"])
     if OtherAks == "Other":
         boissonsName = choice(list(boissons['Other']['Name']))
-        boissonsType = boissons['Other']['Type']['TypeBoissons'][boissons['Other']['Name'].index(boissonsName)]
-        boissonsSize = choice(list(boissons['Other']['Type'][boissonsType]['Size']))
+        boissonsType = boissons['Other']['Type']['TypeBoissons'][boissons['Other']['Name'].index(
+            boissonsName)]
+        boissonsSize = choice(
+            list(boissons['Other']['Type'][boissonsType]['Size']))
         boissonsResult = boissonsName + " " + str(boissonsSize) + " cl"
         price += boissons['Other']['Type'][boissonsType]['Price'][
             boissons['Other']['Type'][boissonsType]['Size'].index(boissonsSize)]
@@ -88,12 +91,14 @@ def ChoiceFavoriteProduct() -> list:
                     mainProduct[NewStandard][Size]['Size'].index(sizeBurger)]
             else:
                 burger = choice(mainProduct[NewStandard][Size]['Name'])
-                price += mainProduct[NewStandard][Size]['Price'][mainProduct[NewStandard][Size]['Name'].index(burger)]
+                price += mainProduct[NewStandard][Size]['Price'][mainProduct[NewStandard]
+                                                                 [Size]['Name'].index(burger)]
 
             try:
                 if random.randint(0, 1) and mainProduct[NewStandard]['Supplement']['Product'].index(
                         burger) and NewStandard != "New":
-                    supplementBurger = choice(mainProduct[NewStandard]['Supplement']['Name'])
+                    supplementBurger = choice(
+                        mainProduct[NewStandard]['Supplement']['Name'])
                     mainResult = burger + " " + supplementBurger
                     Bacon = True
                     price += mainProduct[NewStandard]['Supplement']['Price'][
@@ -108,15 +113,17 @@ def ChoiceFavoriteProduct() -> list:
         else:
             sizeBurger = choice(list(mainProduct[NewStandard]['Size']))
             if sizeBurger != "Single":
-                mainResult = sizeBurger + " " + choice(list(mainProduct[NewStandard]['Name']))
+                mainResult = sizeBurger + " " + \
+                    choice(list(mainProduct[NewStandard]['Name']))
             else:
                 mainResult = choice(list(mainProduct[NewStandard]['Name']))
-            price += mainProduct[NewStandard]['Price'][mainProduct[NewStandard]['Size'].index(sizeBurger)]
+            price += mainProduct[NewStandard]['Price'][mainProduct[NewStandard]
+                                                       ['Size'].index(sizeBurger)]
 
     return [fritesResult, boissonsResult, mainResult, round(price, 2)]
 
 
-def FavoriteSupplement(TypeSupplement: str) -> list[str]:
+def FavoriteSupplement(TypeSupplement: str):
     if TypeSupplement != "Nugget":
         TypeSupplement = choice(list(DataJson['Product']['Supplement']))
     InTypeSuppplement = DataJson['Product']['Supplement'][TypeSupplement]
@@ -126,13 +133,15 @@ def FavoriteSupplement(TypeSupplement: str) -> list[str]:
     if TypeSupplement == "Boissons":
         OtherAks = choice(["Other", "NoOther"])
         if OtherAks != "NoOther":
-            PreNameSupplement = choice(list(InTypeSuppplement[OtherAks]['Name']))
+            PreNameSupplement = choice(
+                list(InTypeSuppplement[OtherAks]['Name']))
             InTypeOtherBoissons = InTypeSuppplement[OtherAks]['Type'][
                 InTypeSuppplement[OtherAks]['Type']['TypeBoissons'][
                     InTypeSuppplement[OtherAks]['Name'].index(PreNameSupplement)]]
             SizeSupplement = choice(list(InTypeOtherBoissons['Size']))
             NameSupplement = f"{PreNameSupplement} {SizeSupplement}cl"
-            PriceSupplement = InTypeOtherBoissons['Price'][InTypeOtherBoissons['Size'].index(SizeSupplement)]
+            PriceSupplement = InTypeOtherBoissons['Price'][InTypeOtherBoissons['Size'].index(
+                SizeSupplement)]
         else:
             SizeSupplement = choice(list(InTypeSuppplement['Size']))
             NameSupplement = f"{SizeSupplement} {choice(list(InTypeSuppplement['Name']))}"
@@ -154,7 +163,8 @@ def FavoriteSupplement(TypeSupplement: str) -> list[str]:
     else:
         SizeSupplement = choice(list(InTypeSuppplement["Size"]))
         NameSupplement = f"{SizeSupplement} {choice(list(InTypeSuppplement['Name']))}"
-        PriceSupplement = InTypeSuppplement['Price'][InTypeSuppplement['Size'].index(SizeSupplement)]
+        PriceSupplement = InTypeSuppplement['Price'][InTypeSuppplement['Size'].index(
+            SizeSupplement)]
 
     return [NameSupplement, PriceSupplement]
 
@@ -162,7 +172,8 @@ def FavoriteSupplement(TypeSupplement: str) -> list[str]:
 class Client:
     def __init__(self):
         self.id = uuid.uuid4()
-        self.Gender = choice([f"{Fore.BLUE}male{Fore.RESET}", f"{Fore.MAGENTA}female{Fore.RESET}"])
+        self.Gender = choice(
+            [f"{Fore.BLUE}male{Fore.RESET}", f"{Fore.MAGENTA}female{Fore.RESET}"])
         self.name = RandomName(self.Gender)
         self.year = random.randint(0, 80)
         self.WorkTicket = choice([True, False])
@@ -177,7 +188,8 @@ class Client:
         # Favorite Menu
         Size = choice(list(DataJson['Menu']))
         self.Menu = str(choices(list(DataJson['Menu'][Size]['Name']))[0])
-        self.Price = DataJson['Menu'][Size]['Price'][DataJson['Menu'][Size]['Name'].index(self.Menu)]
+        self.Price = DataJson['Menu'][Size]['Price'][DataJson['Menu']
+                                                     [Size]['Name'].index(self.Menu)]
 
         # Favorite Product
         self.Product = ChoiceFavoriteProduct()
@@ -188,8 +200,10 @@ class Client:
         # Favorite Hour
         if self.WorkTicket and self.year >= 18:
             self.Hour.append(choice([15, 16, 17, 18]))
-            self.Hour.append(choice(np.array(list(DataJson['Time']['Hour']))[:3]))
-            self.Hour.append(choice(np.array(list(DataJson['Time']['Hour']))[8:]))
+            self.Hour.append(
+                choice(np.array(list(DataJson['Time']['Hour']))[:3]))
+            self.Hour.append(
+                choice(np.array(list(DataJson['Time']['Hour']))[8:]))
             self.Hour = sorted(self.Hour)
         else:
             self.Hour = [choice(DataJson['Time']['Hour']) for i in range(0, 3)]
@@ -248,8 +262,10 @@ class Group:
         # Hour
         if self.Type == "Work":
             self.Hour.append(choice([15, 16, 17, 18]))
-            self.Hour.append(choice(np.array(list(DataJson['Time']['Hour']))[:3]))
-            self.Hour.append(choice(np.array(list(DataJson['Time']['Hour']))[8:]))
+            self.Hour.append(
+                choice(np.array(list(DataJson['Time']['Hour']))[:3]))
+            self.Hour.append(
+                choice(np.array(list(DataJson['Time']['Hour']))[8:]))
             self.Hour = sorted(self.Hour)
         else:
             self.Hour = [choice(DataJson['Time']['Hour']) for i in range(0, 3)]
@@ -287,10 +303,11 @@ def InsertBDD(date, hour, ClientID: Client, menu, product, price, supplement):
 
     collection = db.get_collection(date)
     if product != []:
-        collection.insert_one({"Hour": hour,"ClientID": ClientID.id,"NameClient": ClientID.name,"Menu": menu, "Frites": product[0], "Boissons": product[1], "Main": product[2], "Price": price, "Supplement": supplement})
+        collection.insert_one({"Hour": hour, "ClientID": ClientID.id, "NameClient": ClientID.name, "Menu": menu,
+                               "Frites": product[0], "Boissons": product[1], "Main": product[2], "Price": price, "Supplement": supplement})
     else:
-        collection.insert_one( 
-            {"Hour": hour,"ClientID": ClientID.id,"NameClient": ClientID.name,"Menu": menu, "Frites": "", "Boissons": "", "Main": "", "Price": price, "Supplement": supplement})
+        collection.insert_one(
+            {"Hour": hour, "ClientID": ClientID.id, "NameClient": ClientID.name, "Menu": menu, "Frites": "", "Boissons": "", "Main": "", "Price": price, "Supplement": supplement})
 
 
 def ChoiceProduct(ClientID: Client, date, hour):
@@ -309,7 +326,7 @@ def ChoiceProduct(ClientID: Client, date, hour):
         product.append(choiceP[2])
         price = choiceP[3]
 
-    if random.randint(0, 1): # Supplement
+    if random.randint(0, 1):  # Supplement
         supplement, priceS = FavoriteSupplement("")
         price += priceS
         InsertBDD(date, hour, ClientID, menu, product, price, supplement)

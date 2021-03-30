@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow } = require('electron');
 const shell = require('shelljs'),
     https = require('https');
 
@@ -63,13 +63,4 @@ app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
         createWindow();
     };
-});
-
-ipcMain.on('close-me', () => {
-    app.quit();
-});
-
-ipcMain.on('restart-me', () => {
-    app.relaunch();
-    app.quit();
 });

@@ -276,6 +276,15 @@ div#Rsearch img {
     height: 100%;
 }
 
+div#Rsearch button.double img {
+    width: 50%!important;
+    height: 100%;
+}
+
+div#Rsearch button.double div {
+    height: 100%!important;
+}
+
 div#Rsearch span {
     visibility: hidden;
     width: 0;

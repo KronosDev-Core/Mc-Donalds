@@ -77,58 +77,58 @@ app.post('/state-bd', (_req, res) => {
     BDD ? res.send({ state: "connect-bd" }) : res.send({ state: "error-db", error: bdError });
 });
 
-app.post('/NewProduct', (_req, res) => {
+app.post('/NewProduct', async(_req, res) => {
     console.log('/NewProduct', _req.body);
 
-    dbo.collection("Product").insertOne({ "Menu": _req.body.Menu, "Supplement": _req.body.Supplement, "Size": _req.body.Size, "Name": _req.body.Name, "Price": filterInt(_req.body.Price), "Type": _req.body.Type, "CatType": _req.body.CatType });
+    res.send(await dbo.collection("Product").insertOne({ "Menu": _req.body.Menu, "Supplement": _req.body.Supplement, "Size": _req.body.Size, "Name": _req.body.Name, "Price": filterInt(_req.body.Price), "Type": _req.body.Type, "CatType": _req.body.CatType }));
 });
 
-app.post('/NewMenu', (_req, res) => {
+app.post('/NewMenu', async(_req, res) => {
     console.log('/NewMenu', _req.body);
 
-    dbo.collection("Menu").insertOne({ "Name": _req.body.Name, "Price": filterInt(_req.body.Price), "Child": _req.body.Child, "CatType": _req.body.CatType });
+    res.send(await dbo.collection("Menu").insertOne({ "Name": _req.body.Name, "Price": filterInt(_req.body.Price), "Child": _req.body.Child, "CatType": _req.body.CatType }));
 });
 
-app.post('/NewSupplement', (_req, res) => {
+app.post('/NewSupplement', async(_req, res) => {
     console.log('/NewSupplement', _req.body);
 
-    dbo.collection("Supplement").insertOne({ "Name": _req.body.Name, "Price": filterInt(_req.body.Price), "CatType": _req.body.CatType });
+    res.send(await dbo.collection("Supplement").insertOne({ "Name": _req.body.Name, "Price": filterInt(_req.body.Price), "CatType": _req.body.CatType }));
 });
 
-app.post('/EditProduct', (_req, res) => {
+app.post('/EditProduct', async(_req, res) => {
     console.log('EditProduct', _req.body);
 
-    dbo.collection("Product").updateOne({ "_id": ObjectId(_req.body._id) }, { "Menu": _req.body.Menu, "Supplement": _req.body.Supplement, "Size": _req.body.Size, "Name": _req.body.Name, "Price": filterInt(_req.body.Price), "Type": _req.body.Type, "CatType": _req.body.CatType });
+    res.send(await dbo.collection("Product").updateOne({ "_id": ObjectId(_req.body._id) }, { "Menu": _req.body.Menu, "Supplement": _req.body.Supplement, "Size": _req.body.Size, "Name": _req.body.Name, "Price": filterInt(_req.body.Price), "Type": _req.body.Type, "CatType": _req.body.CatType }));
 });
 
-app.post('/EditMenu', (_req, res) => {
+app.post('/EditMenu', async(_req, res) => {
     console.log('EditMenu', _req.body);
 
-    dbo.collection("Menu").updateOne({ "_id": ObjectId(_req.body._id) }, { "Name": _req.body.Name, "Price": filterInt(_req.body.Price), "Child": _req.body.Child, "CatType": _req.body.CatType });
+    res.send(await dbo.collection("Menu").updateOne({ "_id": ObjectId(_req.body._id) }, { "Name": _req.body.Name, "Price": filterInt(_req.body.Price), "Child": _req.body.Child, "CatType": _req.body.CatType }));
 });
 
-app.post('/EditSupplement', (_req, res) => {
+app.post('/EditSupplement', async(_req, res) => {
     console.log('EditSupplement', _req.body);
 
-    dbo.collection("Menu").updateOne({ "_id": ObjectId(_req.body._id) }, { "Name": _req.body.Name, "Price": filterInt(_req.body.Price), "CatType": _req.body.CatType });
+    res.send(await dbo.collection("Menu").updateOne({ "_id": ObjectId(_req.body._id) }, { "Name": _req.body.Name, "Price": filterInt(_req.body.Price), "CatType": _req.body.CatType }));
 });
 
-app.post('/GetProduct', (_req, res) => {
+app.post('/GetProduct', async(_req, res) => {
     console.log('/GetProduct', _req.body);
 
     if (_req.body.search === undefined && _req.body.column === undefined) {
-        dbo.collection("Product").find().toArray((err, result) => {
+        await dbo.collection("Product").find().toArray((err, result) => {
             if (err) throw err;
             res.send(result);
         });
     } else if (_req.body.search !== "" && _req.body.column === undefined) {
-        dbo.collection("Product").find({ "Name": { $regex: `.*${_req.body.search}.*` } }).toArray((err, result) => {
+        await dbo.collection("Product").find({ "Name": { $regex: `.*${_req.body.search}.*` } }).toArray((err, result) => {
             if (err) throw err;
             res.send(result);
         });
     } else if (_req.body.search !== "" && _req.body.column !== "") {
         if (_req.body.column === "_id") {
-            dbo.collection("Product").find({ "_id": ObjectId(_req.body.search) }).toArray((err, result) => {
+            await dbo.collection("Product").find({ "_id": ObjectId(_req.body.search) }).toArray((err, result) => {
                 if (err) throw err;
                 res.send(result);
             });
@@ -136,22 +136,22 @@ app.post('/GetProduct', (_req, res) => {
     };
 });
 
-app.post('/GetMenu', (_req, res) => {
+app.post('/GetMenu', async(_req, res) => {
     console.log('/GetMenu', _req.body, _req.body.column);
 
     if (_req.body.search === undefined && _req.body.column === undefined) {
-        dbo.collection("Menu").find().toArray((err, result) => {
+        await dbo.collection("Menu").find().toArray((err, result) => {
             if (err) throw err;
             res.send(result);
         });
     } else if (_req.body.search !== "" && _req.body.column === undefined) {
-        dbo.collection("Menu").find({ "Name": { $regex: `.*${_req.body.search}.*` } }).toArray((err, result) => {
+        await dbo.collection("Menu").find({ "Name": { $regex: `.*${_req.body.search}.*` } }).toArray((err, result) => {
             if (err) throw err;
             res.send(result);
         });
     } else if (_req.body.search !== "" && _req.body.column !== "") {
         if (_req.body.column === "_id") {
-            dbo.collection("Menu").find({ "_id": ObjectId(_req.body.search) }).toArray((err, result) => {
+            await dbo.collection("Menu").find({ "_id": ObjectId(_req.body.search) }).toArray((err, result) => {
                 if (err) throw err;
                 res.send(result);
             });
@@ -159,22 +159,22 @@ app.post('/GetMenu', (_req, res) => {
     };
 });
 
-app.post('/GetSupplement', (_req, res) => {
+app.post('/GetSupplement', async(_req, res) => {
     console.log('/GetSupplement', _req.body);
 
     if (_req.body.search === undefined && _req.body.column === undefined) {
-        dbo.collection("Supplement").find().toArray((err, result) => {
+        await dbo.collection("Supplement").find().toArray((err, result) => {
             if (err) throw err;
             res.send(result);
         });
     } else if (_req.body.search !== "" && _req.body.column === undefined) {
-        dbo.collection("Supplement").find({ "Name": { $regex: `.*${_req.body.search}.*` } }).toArray((err, result) => {
+        await dbo.collection("Supplement").find({ "Name": { $regex: `.*${_req.body.search}.*` } }).toArray((err, result) => {
             if (err) throw err;
             res.send(result);
         });
     } else if (_req.body.search !== "" && _req.body.column !== "") {
         if (_req.body.column === "_id") {
-            dbo.collection("Supplement").find({ "_id": ObjectId(_req.body.search) }).toArray((err, result) => {
+            await dbo.collection("Supplement").find({ "_id": ObjectId(_req.body.search) }).toArray((err, result) => {
                 if (err) throw err;
                 res.send(result);
             });

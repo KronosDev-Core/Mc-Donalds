@@ -1,7 +1,5 @@
 // Quit App
 
-const { ipcRenderer } = require("electron");
-const $ = require('jquery');
 let bdConnect = false;
 
 let typeProduct = "",
@@ -39,8 +37,7 @@ kronos(() => {
     tippy('select#supplement', { content: "Supplement" });
     tippy('select#menu', { content: "Menu" });
 
-    kronos('button#Quit').on('click', () => { kronos().request("POST", "/quit", {}, (res) => { return res }), ipcRenderer.send('close-me') });
-    kronos("button#Restart").on("click", () => { kronos().request("POST", "/quit", {}, (res) => { return res }), ipcRenderer.send("restart-me") });
+    kronos('button#Quit').on('click', () => { kronos().request("POST", "/quit", {}, (res) => { return res }) });
 
     kronos('button#Bsearch').on('click', () => {
         getSearchElement(kronos('input#Isearch').value());
@@ -103,7 +100,7 @@ kronos(() => {
                     Price = document.querySelector("#price").value,
                     Child = document.querySelector("#child").checked;
 
-                kronos().request("POST", "/NewMenu", { "Name": Name, "Price": filterInt(Price), "Child": Child, "CatType": Nav }, (res) => { return res });
+                console.log(kronos().request("POST", "/NewMenu", { "Name": Name, "Price": filterInt(Price), "Child": Child, "CatType": Nav }, res => { return res }));
             };
             if (typeProduct !== "" && Nav === "Product") {
                 var Menu = document.querySelector("#menu").value,
@@ -112,12 +109,12 @@ kronos(() => {
                     Name = document.querySelector("#name").value,
                     Price = document.querySelector("#price").value;
 
-                kronos().request("POST", "/NewProduct", { "Menu": Menu, "Supplement": Supplement, "Size": Size, "Name": Name, "Price": filterInt(Price), "Type": typeProduct, "CatType": Nav }, (res) => { return res });
+                console.log(kronos().request("POST", "/NewProduct", { "Menu": Menu, "Supplement": Supplement, "Size": Size, "Name": Name, "Price": filterInt(Price), "Type": typeProduct, "CatType": Nav }, (res) => { return res }));
             };
             if (Nav === "Supplement") {
                 var Name = document.querySelector("#name").value,
                     Price = document.querySelector("#price").value;
-                kronos().request("POST", "/NewSupplement", { "Name": Name, "Price": filterInt(Price), "CatType": Nav }, (res) => { return res });
+                console.log(kronos().request("POST", "/NewSupplement", { "Name": Name, "Price": filterInt(Price), "CatType": Nav }, (res) => { return res }));
             };
         };
     });
@@ -183,23 +180,23 @@ kronos(() => {
                         res += `<button id="${elem._id}"><img src="${Burger}"><span>${elem.Name}</span></button>`;
                     };
 
-                    if (elem.type == "Nugget") {
+                    if (elem.Type == "Nugget") {
                         res += `<button id="${elem._id}"><img src="${Nugget}"><span>${elem.Name}</span></button>`;
                     };
 
-                    if (elem.type == "Salade") {
+                    if (elem.Type == "Salade") {
                         res += `<button id="${elem._id}"><img src="${Salade}"><span>${elem.Name}</span></button>`;
                     };
 
-                    if (elem.type == "Drink") {
-                        res += `<button class="double" id="${elem._id}"><div></div><img src="${HotDrink}"><img src="${ColdDrink}"></div><span>${elem.Name}</span></button>`;
+                    if (elem.Type == "Drink") {
+                        res += `<button class="double" id="${elem._id}"><div><img src="${HotDrink}"><img src="${ColdDrink}"></div><span>${elem.Name}</span></button>`;
                     };
 
-                    if (elem.type == "Wrap") {
+                    if (elem.Type == "Wrap") {
                         res += `<button id="${elem._id}"><img src="${Wrap}"><span>${elem.Name}</span></button>`;
                     };
 
-                    if (elem.type == "Fries") {
+                    if (elem.Type == "Fries") {
                         res += `<button id="${elem._id}"><img src="${Fries}"><span>${elem.Name}</span></button>`;
                     };
                 };
@@ -275,6 +272,19 @@ kronos(() => {
         };
     };
 
-    setInterval(() => { bdConnect || kronos().request("POST", "/state-bd", {}, data => { "connect-bd" === data.state ? (kronos("div#db img").attr("src", "/assets/svg/391100-electronic-and-web-element-collection/svg/013-database-2.svg"), kronos("div#db span").html("Connected"), bdConnect = !0) : console.error(data.error) }) }, 2e3);
+    // setInterval(() => { bdConnect || kronos().request("POST", "/state-bd", {}, data => { "connect-bd" === data.state ? (kronos("div#db img").attr("src", "/assets/svg/391100-electronic-and-web-element-collection/svg/013-database-2.svg"), kronos("div#db span").html("Connected"), bdConnect = !0) : console.error(data.error) }) }, 2e3);
 
+    setInterval(() => {
+        if (!bdConnect) {
+            kronos().request("POST", "/state-bd", {}, data => {
+                if ("connect-bd" === data.state) {
+                    kronos("div#db img").attr("add", "src", "/assets/svg/391100-electronic-and-web-element-collection/svg/013-database-2.svg");
+                    kronos("div#db span").html("Connected");
+                    bdConnect = true;
+                } else {
+                    console.error(data);
+                }
+            })
+        };
+    }, 2e3)
 });
