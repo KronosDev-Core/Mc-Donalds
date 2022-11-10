@@ -11,7 +11,7 @@
     "author": "KronosDev <kronosdev.pro@gmail.com>",
     "license": "MIT",
     "devDependencies": {
-        "electron": "^9.0.5",
+        "electron": "^18.3.7",
         "electron-packager": "^15.2.0"
     },
     "dependencies": {
